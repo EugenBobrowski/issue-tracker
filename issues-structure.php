@@ -10,8 +10,9 @@ class Issues_Structure
 
         add_action('init', array($this, 'register_post_type'));
         add_action('init', array($this, 'register_project_taxonomy'));
+        add_action('init', array($this, 'register_client_taxonomy'));
 
-//        if ($this->check_required_plugins()) $this->issue_details();
+        if ($this->check_required_plugins()) $this->issue_details();
 
 
     }
@@ -22,8 +23,10 @@ class Issues_Structure
             'public' => true,
             'label' => 'Issues',
             'menu_icon' => 'dashicons-clipboard',
-            'supports' => array('title', 'editor', 'author', 'comments' ),
-
+	        'menu_position' => 3,
+	        'capability_type' => 'page',
+	        'hierarchical' => true,
+            'supports' => array('title', 'editor', 'author', 'page-attributes', 'comments' ),
         );
         register_post_type('issues', $args);
     }
@@ -61,86 +64,46 @@ class Issues_Structure
         );
     }
 
+    public function register_client_taxonomy()
+    {
+        register_taxonomy(
+            'issues_clients',
+            'issues',
+            array(
+                'label' => __('Clients'),
+                'labels' => array(
+                    'name'                       => _x( 'Clients', 'taxonomy general name', 'textdomain' ),
+                    'singular_name'              => _x( 'Client', 'taxonomy singular name', 'textdomain' ),
+                    'search_items'               => __( 'Search Clients', 'textdomain' ),
+                    'popular_items'              => __( 'Popular Clients', 'textdomain' ),
+                    'all_items'                  => __( 'All Clients', 'textdomain' ),
+                    'parent_item'                => null,
+                    'parent_item_colon'          => null,
+                    'edit_item'                  => __( 'Edit Client', 'textdomain' ),
+                    'update_item'                => __( 'Update Client', 'textdomain' ),
+                    'add_new_item'               => __( 'Add New Client', 'textdomain' ),
+                    'new_item_name'              => __( 'New Client Name', 'textdomain' ),
+                    'separate_items_with_commas' => __( 'Separate Clients with commas', 'textdomain' ),
+                    'add_or_remove_items'        => __( 'Add or remove Clients', 'textdomain' ),
+                    'choose_from_most_used'      => __( 'Choose from the most used Clients', 'textdomain' ),
+                    'not_found'                  => __( 'No Clients found.', 'textdomain' ),
+                    'menu_name'                  => __( 'Clients', 'textdomain' ),
+                ),
+                'rewrite' => array('slug' => 'client'),
+                'hierarchical' => true,
+                'show_in_quick_edit'	=> true,
+                'show_admin_column'     => true,
+            )
+        );
+    }
+
     public function issue_details()
     {
         new Atf_Metabox('issues_meta', 'Issue Details', 'Issues', array(
             'date' => array(
-                'title' => __('Date of Race'),
-                'type' => 'text',
+                'title' => __('Deadline'),
+                'type' => 'datepicker',
             ),
-            'state' => array(
-                'title' => __('State'),
-                'type' => 'text',
-            ),
-            'total_participants_men' => array(
-                'title' => __('Total Participants men'),
-                'type' => 'text',
-            ),
-            'total_participants_women' => array(
-                'title' => __('Total Participants Women'),
-                'type' => 'text',
-            ),
-            'total_participants' => array(
-                'title' => __('total number of participants'),
-                'type' => 'text',
-            ),
-            'avg_finishing_time' => array(
-                'title' => __('average finishing time for all participants'),
-                'type' => 'text',
-            ),
-            'fastest_finishing_time_men' => array(
-                'title' => __('fastest finishing time men'),
-                'type' => 'text',
-            ),
-            'fastest_finishing_time_women' => array(
-                'title' => __('fastest finishing time women'),
-                'type' => 'text',
-            ),
-            'entry_fee' => array(
-                'title' => __('entry fee to run the race (none members)'),
-                'type' => 'text',
-            ),
-            'finishers_region' => array(
-                'title' => __('Finisher\'s region of origin'),
-                'type' => 'text',
-            ),
-            'gender' => array(
-                'title' => __('Gender'),
-                'type' => 'text',
-            ),
-            'temperature_the_day' => array(
-                'title' => __('temperature the day of marathon'),
-                'type' => 'text',
-            ),
-            'humidity_the_day' => array(
-                'title' => __('humidity the day of marathon'),
-                'type' => 'text',
-            ),
-            'aid_stations_number' => array(
-                'title' => __('number of aid stations'),
-                'type' => 'text',
-            ),
-            'avg_altitude' => array(
-                'title' => __('Avg. altitude for marathon'),
-                'type' => 'text',
-            ),
-            'dnf_number' => array(
-                'title' => __('number of DNF\'s in a race'),
-                'type' => 'text',
-            ),
-            'fastest_marathon' => array(
-                'title' => __('fastest marathon?'),
-                'type' => 'text',
-            ),
-            'state_with_most_marathon' => array(
-                'title' => __('state with most marathons'),
-                'type' => 'text',
-            ),
-            'pace_groups_number' => array(
-                'title' => __('number of pace groups'),
-                'type' => 'text',
-            ),
-
         ));
     }
 
