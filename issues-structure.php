@@ -11,7 +11,7 @@ class Issues_Structure
         add_action('init', array($this, 'register_post_type'));
         add_action('init', array($this, 'register_project_taxonomy'));
 
-        if ($this->check_required_plugins()) $this->issue_details();
+//        if ($this->check_required_plugins()) $this->issue_details();
 
 
     }
@@ -22,7 +22,7 @@ class Issues_Structure
             'public' => true,
             'label' => 'Issues',
             'menu_icon' => 'dashicons-clipboard',
-            'supports' => array('title'),
+            'supports' => array('title', 'editor', 'author', 'comments' ),
 
         );
         register_post_type('issues', $args);
@@ -55,7 +55,8 @@ class Issues_Structure
                 ),
                 'rewrite' => array('slug' => 'project'),
                 'hierarchical' => true,
-                'show_ui' => false,
+                'show_in_quick_edit'	=> true,
+                'show_admin_column'     => true,
             )
         );
     }
