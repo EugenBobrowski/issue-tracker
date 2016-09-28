@@ -18,6 +18,8 @@ class Issue_Tracker {
     {
         $this->load_structure();
         register_activation_hook( __FILE__, array($this, 'activation') );
+        add_action( 'widgets_init', array($this, 'load_widgets') );
+        add_action('init', array($this, 'load_shortcodes'));
     }
 
     public function load_structure () {
@@ -26,6 +28,15 @@ class Issue_Tracker {
 
     public function activation () {
         flush_rewrite_rules();
+    }
+
+    public function load_widgets() {
+        require_once plugin_dir_path(__FILE__) . 'widget-toggl.php';
+        register_widget('Issue_Tracker_Toggl_Widget');
+    }
+
+    public function load_shortcodes () {
+        require_once plugin_dir_path(__FILE__) . 'shortcode-dashboard.php';
     }
 
 
