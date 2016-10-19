@@ -11,3 +11,62 @@
 
   }
 }
+.priority-icon {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  border-radius: 50%;
+  border: 1px solid fade(#000000, 10%);
+  background: transparent no-repeat center center;
+  background-size: contain;
+
+  &.blocker, &.critical {
+    background-image: data-uri("img/priority-blocker.png");
+  }
+
+  &.major {
+    background-image: data-uri("img/priority-major.png");
+  }
+
+  &.minor, &.trivial {
+    background-image: data-uri("img/priority-minor.png");
+  }
+
+  &:after {
+    display: none;
+    position: absolute;
+    top:100%;
+    left: 0;
+    line-height: 16px;
+    font-size: 12px;
+    color: #ffffff;
+    height: 16px;
+    padding: 2px 4px;
+    margin: 2px 0 0;
+    border-radius: 2px;
+    content: attr(data-priority);
+    background: fade(#000000, 50%);
+  }
+  &:hover {
+    &:after {
+      display: block;
+    }
+  }
+
+}
+
+.issue-projects-list {
+  a {
+    display: inline-block;
+    border: 1px solid fade(#000000, 10%);
+    padding: 2px 4px;
+    border-radius: 2px;
+    margin: 2px;
+  }
+}
+
+.project-column {
+  width: 120px;
+}

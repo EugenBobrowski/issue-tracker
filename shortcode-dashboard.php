@@ -30,19 +30,20 @@ class Issue_Tracker_Shortcode_Dashboard
                     <tr>
                         <td>#</td>
                         <th><?php _e('Issue', 'issue-tracker'); ?></th>
-                        <th><?php _e('Priority', 'issue-tracker'); ?></th>
-                        <th><?php _e('Project', 'issue-tracker'); ?></th>
+                        <th class="project-column "><?php _e('Project', 'issue-tracker'); ?></th>
                     </tr>
                     </thead><?php
                     while ($issuers_query->have_posts()) {
                         $issuers_query->the_post();
-
+                        $meta = get_post_meta(get_the_ID(), 'issues_meta', true);
+                        $projects = get_the_term_list(get_the_ID(), 'issues_project');
                         ?>
                         <tr>
                             <th><?php echo get_the_ID(); ?></th>
-                            <td><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                                <i class="priority-icon <?php echo $meta['priority']; ?>" data-priority="<?php echo $meta['priority']; ?>"></i>
+                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></td>
+                            <td class="project-column issue-projects-list"><?php echo get_the_term_list(get_the_ID(), 'issues_project', '', ' ', ''); ?></td>
                         </tr>
                         <?php
                     }

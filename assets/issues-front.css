@@ -6,3 +6,53 @@
 .issues-list li {
   display: block;
 }
+.priority-icon {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: transparent no-repeat center center;
+  background-size: contain;
+}
+.priority-icon.blocker,
+.priority-icon.critical {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AoTEzQEcKt7NQAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAQISURBVFjD7ZhPbFRFHMc/Xah60EAB20EEJTEB9TJIuBkRG24YKm0X8EwIhBiiggfCyQgXgkjQaKIHTiVsU1pCQmK0Yrgq+C6icqGAyo+1Sk3ABCquh/5e8mM6b3ffvvbG9zLvzduZ+e5vfv/hIYqhrdWFiXOPAK8CLwErgS6gA6gBE0AV+AX4HvjWi9ybdYKJc23AIuAgsC3nWV8A+4GqF6nNOMHEuXnAELAWmGs+/QmMAj+q1O4CS4EXVcKd5rf/AueBPi9ya8YIJs5tBQbM1BgwAhz1ImMN1i4B9gAbgeXm05te5ERhgolzQ8AmM1UGTufVKdXZDXoLKYa8SF/LBBPnTgFv6OsoUPYifxWxyovOzSvBILBep4a9yKbcBAPJfeZFdjYwnnZgjk7dBybrGUPi3MfALn095UV6myYY6FwmOSW2V/WrC3hcP91WgxkBDmURTZz7FNiRqo4XGWxIUK11Ql+/8SLdGfq0C/iwyZt9B/goRjRx7msgPaPDi0zY76WIRCpmqj+yYSdwIwc5gF/rXHfZPFeUQ5ygOuHX9HlLaBCJc4uAi8CCJkilhDbHri6FnrFFX9eFe4cED6oTvgoMB+TagcvAkhxBYLMXqWTorsWw+ta5wAdRgolzj5rwNRLxc29prG0WWeT6gd2BFO+pQQHssH/ASvBl83w08o8P5yBXziBXVh0/EpHiEfPcHSO4Wse/vciVYPHenOQGM8idzNrTi1zTuI5mSNMIvqDjl3bhhal/+noRgzDkrCX3RKT4lY4rYgS7dPzZrpgzFSFcAYPoN5KzhDo1+lj8pONTMYLzdQxjbQl4rIBBVDLWPGFCY4rrAZdpbgYglqWUChhEFv5rRqHtwWmIcZGN/iloEDHc0aTCYmnA5QGCN3V8Plg0CfxR0CBiqOreFunZv8UIXtJxfWD+NeNEWzWIGM5G4nN69uUYwQupgibOPRcsPFTQIGI4EKxfBixM89oYwfNBWAuluLuAQYR4NyK9t83z6DSCXmRSS0OAjZrzWRwrYBAWt4BPIvllj0mQa1nuY5+Whs8AvREptmoQKX4HVnqRu8F8L/Csnr2/nn8bN1c9oPlfVk2RxyBSya3yItVgnwWmvDgXBopSREpWcifq1CKLc1zrHmBxSC7NogO/WmumaOpjqjQE+NyLbG9QNPUAT2rRVFPHfhM4naNoinqHemXnALC1hbKzptFn9srOjNp4Rgp31bmKSUpbK9wzJIkWOMMttj56gx5PpuTyNo9CXzcGnFH9ut5g7TJ1wj3qSma2eWQO6lCS6+q0327U4H4bPK3tt24TvtL22zklNz6bDcz3jfU1i+PAe8D4rDQwQ3znXHs7vAKsMS3g+Safq2qG9EORFvBDFMX/dg+0RvKpRZcAAAAASUVORK5CYII=");
+}
+.priority-icon.major {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AoTEzMftY8kHgAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAGNSURBVFjD7Za7SmRBEIa/ESYy1/8xOnRfwUgwMBEFF402EBUveMUbI6hoYKCooCZGwj7CgmhaqRtsJlRipDDhmJxITuvOnOOMSP/Zqaouvv7rdNOQlPSNZNIPk65N6iurZ1eJcFvAHTAE3Ju0WEbfSklwx8BETmovuM901EGTTiNwANMmLXcM0KQa8PODsvVs/O0dsUkXwEgTS2rBfaEtDpq02yQcwHwr4660AHcCjBf4M/aD+/SnOGjSWUE4gCmTVksHNGkHGIukJ3NiL8B8pH7NpO3SAE26AmYj6YHgfpgT7w7uO0DMrYXsFigGaNIgMBxJ/wruv99bH9zX34GcM2moqIMxuMHgfvQ/E8ggN2ObLAr4Lyc2GtxvmjkZwX0ZWMlJ3RYDbDRWgL9AHXgGxoL7ZSvHN7hvAEtZrzrwkH0XuwdNqgK9QD24P0VqGm+3Fty7IrU9QDW4P7blNdMsYEfeg5+lBJgAE2ACTIAJMAG2rPpXA3z7Yj4vo2mlTMtMGgf6gT/B/YCkpG+gV/84eGGp7nTuAAAAAElFTkSuQmCC");
+}
+.priority-icon.minor,
+.priority-icon.trivial {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AoTEzIi9PxZTgAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAG+SURBVFjD7Zg9S1xBFIYfsyIxWFhaRQiLTSr9B4vI4A+YhVTBDWjWJYpoYTdMZSCGGDAbDRqSxua0aaZSK5vANmLlgp1YWviNaLPFIvfqujPqIvN295yZuc99DzOcuRAV9bRqC7WQEjsFvAPWnDYLLQWoxM4D03WhZafNxxBrvwj0oSM3nseU2JetBJhUic5WAkzSVasDEgEjYASMgBEwAj692htsp94Cp06baoDWrAfoAXacNufeDiqxe8A2sKvEfveEKwL7QAU4UGJfeQEqsRborQtNKLGrTcLNAOW6UDfw19fB/oRYQYn9c0+4EeBLQqrPF/BXSvx9o04qsbPA75T0Ny9Ap80/oJiSLiixK7d01EdK7CgwlzJ/yWlzZyUydw2oysb/bD53DAwlpAey+dxr4A3QdSPXAXxOWXbZaVMMeqtTYj8AKwGOtrLTptTo4EyjA6uyUcnmcxfAoAfcz/vANXUvVmJLwGKTcOOPcnGvHbjlhyprUyVO2DgnKRvHu6zBfn0osQXgtvNw0WnzyecdGZ/JtY2T5uQPXzhvB+ucnAQWQjoXFLAG2X91eTl8dni0tTn2dT02wVHPRdf8JIYD67Ws5AAAAABJRU5ErkJggg==");
+}
+.priority-icon:after {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  line-height: 16px;
+  font-size: 12px;
+  color: #ffffff;
+  height: 16px;
+  padding: 2px 4px;
+  margin: 2px 0 0;
+  border-radius: 2px;
+  content: attr(data-priority);
+  background: rgba(0, 0, 0, 0.5);
+}
+.priority-icon:hover:after {
+  display: block;
+}
+.issue-projects-list a {
+  display: inline-block;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 2px 4px;
+  border-radius: 2px;
+  margin: 2px;
+}
+.project-column {
+  width: 120px;
+}

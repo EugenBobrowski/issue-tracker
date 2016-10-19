@@ -103,7 +103,8 @@ class Issues_Structure
             'priority' => array(
                 'title' => __('Priority'),
                 'type' => 'select',
-                'options' => array('blocker' => 'blocker',
+                'options' => array(
+                    'blocker' => 'blocker',
                     'critical' => 'critical',
                     'major' => 'major',
                     'minor' => 'minor',
