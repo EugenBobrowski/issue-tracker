@@ -9,6 +9,7 @@ class Issues_Structure
     {
 
         add_action('init', array($this, 'register_post_type'));
+        add_action('init', array($this, 'register_post_type_user_page'));
         add_action('init', array($this, 'register_project_taxonomy'));
         add_action('init', array($this, 'register_client_taxonomy'));
 
@@ -29,6 +30,17 @@ class Issues_Structure
             'supports' => array('title', 'editor', 'author', 'page-attributes', 'comments'),
         );
         register_post_type('issues', $args);
+    }
+    public function register_post_type_user_page () {
+        $args = array(
+            'public' => true,
+            'label' => 'Users Pages',
+            'menu_icon' => 'dashicons-admin-users',
+            'capability_type' => 'page',
+            'hierarchical' => true,
+            'supports' => array('title', 'comments'),
+        );
+        register_post_type('users_pages', $args);
     }
 
     public function register_project_taxonomy()

@@ -19,6 +19,7 @@ class Issue_Tracker
     {
         $this->load_structure();
         register_activation_hook(__FILE__, array($this, 'activation'));
+        add_action('init', array($this, 'load_counter'));
         add_action('widgets_init', array($this, 'load_widgets'));
         add_action('init', array($this, 'load_shortcodes'));
         add_action('init', array($this, 'customize_comments'));
@@ -38,6 +39,11 @@ class Issue_Tracker
     {
         require_once plugin_dir_path(__FILE__) . 'widget-toggl.php';
         register_widget('Issue_Tracker_Toggl_Widget');
+    }
+
+    public function load_counter()
+    {
+        require_once plugin_dir_path(__FILE__) . 'counter.php';
     }
 
     public function load_shortcodes()

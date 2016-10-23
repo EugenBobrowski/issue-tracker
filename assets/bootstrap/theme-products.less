@@ -1,0 +1,41 @@
+.product-cat-shortcode {
+
+}
+
+.product-cat-shotcode-title {
+  display: block;
+  padding: 20px 5px;
+  line-height: 34px;
+  text-align: center;
+  background: @brand-primary;
+  color: #000000;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 0 0 @grid-gutter-width;
+
+  &:hover {
+    color: #000000;
+  }
+}
+.product-cat-child-title {
+  &:extend(.product-cat-shotcode-title);
+
+  background: transparent;
+  text-transform: none;
+  text-decoration: underline;
+  border: 1px solid #e9e9e9;
+  margin-top: -1px;
+  font-weight: 400;
+  padding: 20px;
+  .btn.order-product-link {
+    margin-top: 20px;
+    text-decoration: none;
+  }
+}
+.product-title {
+
+}
+.order-product-link {
+  text-decoration: none;
+}

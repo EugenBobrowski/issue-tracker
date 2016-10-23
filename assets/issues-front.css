@@ -56,3 +56,212 @@
 .project-column {
   width: 120px;
 }
+.time-tacking-modal {
+  position: fixed;
+  z-index: 4;
+  transition: all .2s;
+}
+.time-tacking-modal * {
+  box-sizing: border-box;
+}
+.time-tacking-modal,
+.time-tacking-modal .overlay {
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  transition: all .2s;
+}
+.time-tacking-modal .overlay {
+  position: absolute;
+  background: rgba(65, 166, 42, 0.5);
+}
+.time-tacking-modal .modal-body {
+  min-height: 300px;
+  min-width: 300px;
+  margin: 160px 60px;
+  padding: 50px 100px;
+  background: #ffffff;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: all .2s;
+}
+.time-tacking-modal .input-group {
+  position: relative;
+  margin: 0 0 15px;
+}
+.time-tacking-modal .form-control {
+  width: 100%;
+}
+.time-tacking-modal .time-field {
+  text-align: center;
+}
+.time-tacking-modal .start-stop {
+  background-color: #24890d;
+}
+.time-tacking-modal .start-stop:active,
+.time-tacking-modal .start-stop:focus {
+  background-color: #55d737;
+}
+.time-tacking-modal .start-stop.active {
+  background-color: #ff2330;
+}
+.time-tacking-modal .start-stop.active:active,
+.time-tacking-modal .start-stop.active:focus {
+  background-color: #ff3a55;
+}
+.time-tacking-modal .minimize {
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  margin: 16px;
+  width: 16px;
+  height: 4px;
+  z-index: 10;
+  transition: all .2s;
+}
+.time-tacking-modal .minimize:focus {
+  outline: none;
+}
+.time-tacking-modal .handle {
+  position: absolute;
+  top: 0;
+  height: 20px;
+  left: 0;
+  right: 48px;
+}
+.time-tacking-modal.minimized {
+  top: 70px;
+  right: 30px;
+  width: 300px;
+  margin: 0;
+  opacity: 0.95;
+  transition: all .2s;
+  text-align: center;
+}
+.time-tacking-modal.minimized .overlay {
+  opacity: 0;
+}
+.time-tacking-modal.minimized .modal-body {
+  border-radius: 2px;
+  margin: 0;
+  padding: 32px 6px;
+  min-height: 150px;
+  transition: all .2s;
+}
+.time-tacking-modal.minimized .minimize {
+  height: 12px;
+  margin: 8px;
+  border-top-width: 4px;
+  transition: all .2s;
+}
+.time-tacking-modal.minimized .handle {
+  cursor: move;
+}
+.time-tacking-modal.minimized .form-control {
+  text-align: center;
+  margin: 0 0 15px;
+}
+.time-tacking-modal:not(.minimized) .input-group {
+  position: relative;
+  display: table;
+  border-collapse: separate;
+}
+.time-tacking-modal:not(.minimized) .input-group .form-control:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.time-tacking-modal:not(.minimized) .input-group-addon,
+.time-tacking-modal:not(.minimized) .input-group-btn,
+.time-tacking-modal:not(.minimized) .input-group .form-control {
+  display: table-cell;
+}
+.time-tacking-modal:not(.minimized) .input-group-addon:not(:first-child):not(:last-child),
+.time-tacking-modal:not(.minimized) .input-group-btn:not(:first-child):not(:last-child),
+.time-tacking-modal:not(.minimized) .input-group .form-control:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+.time-tacking-modal:not(.minimized) .input-group-addon,
+.time-tacking-modal:not(.minimized) .input-group-btn {
+  width: 1%;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.time-tacking-modal:not(.minimized) .input-group .form-control:first-child,
+.time-tacking-modal:not(.minimized) .input-group-addon:first-child,
+.time-tacking-modal:not(.minimized) .input-group-btn:first-child > .btn,
+.time-tacking-modal:not(.minimized) .input-group-btn:first-child > .btn-group > .btn,
+.time-tacking-modal:not(.minimized) .input-group-btn:first-child > .dropdown-toggle,
+.time-tacking-modal:not(.minimized) .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),
+.time-tacking-modal:not(.minimized) .input-group-btn:last-child > .btn-group:not(:last-child) > .btn {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+.time-tacking-modal:not(.minimized) .input-group-addon:first-child {
+  border-right: 0;
+}
+.time-tacking-modal:not(.minimized) .input-group .form-control:last-child,
+.time-tacking-modal:not(.minimized) .input-group-addon:last-child,
+.time-tacking-modal:not(.minimized) .input-group-btn:last-child > .btn,
+.time-tacking-modal:not(.minimized) .input-group-btn:last-child > .btn-group > .btn,
+.time-tacking-modal:not(.minimized) .input-group-btn:last-child > .dropdown-toggle,
+.time-tacking-modal:not(.minimized) .input-group-btn:first-child > .btn:not(:first-child),
+.time-tacking-modal:not(.minimized) .input-group-btn:first-child > .btn-group:not(:first-child) > .btn {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+.time-tacking-modal:not(.minimized) .input-group-addon:last-child {
+  border-left: 0;
+}
+.time-tacking-modal:not(.minimized) .input-group-btn {
+  position: relative;
+  font-size: 0;
+  white-space: nowrap;
+}
+.time-tacking-modal:not(.minimized) .input-group-btn > .btn {
+  position: relative;
+}
+.time-tacking-modal:not(.minimized) .input-group-btn > .btn + .btn {
+  margin-left: -1px;
+}
+.time-tacking-modal:not(.minimized) .input-group-btn > .btn:hover,
+.time-tacking-modal:not(.minimized) .input-group-btn > .btn:focus,
+.time-tacking-modal:not(.minimized) .input-group-btn > .btn:active {
+  z-index: 2;
+}
+.time-tacking-modal:not(.minimized) .input-group-btn:first-child > .btn,
+.time-tacking-modal:not(.minimized) .input-group-btn:first-child > .btn-group {
+  margin-right: -1px;
+}
+.time-tacking-modal:not(.minimized) .input-group-btn:last-child > .btn,
+.time-tacking-modal:not(.minimized) .input-group-btn:last-child > .btn-group {
+  z-index: 2;
+  margin-left: -1px;
+}
+.time-tacking-modal th,
+.time-tacking-modal td {
+  padding: 5px;
+  font-size: 0.8em;
+}
+.time-tacking-modal tr:nth-child(2n) td {
+  background: rgba(0, 0, 0, 0.02);
+}
+.time-tacking-modal .time-item-id {
+  width: 4em;
+  text-align: center;
+}
+.time-tacking-modal .time-item-message {
+  width: auto;
+}
+.time-tacking-modal .time-item-time {
+  width: 7em;
+  text-align: center;
+}
+.time-tacking-modal .no-time-items {
+  background: rgba(0, 0, 0, 0.02);
+  color: #aaaaaa;
+  font-style: italic;
+}

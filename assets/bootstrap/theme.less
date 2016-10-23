@@ -1,0 +1,187 @@
+/*!
+ * Bootstrap v3.3.6 (http://getbootstrap.com)
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+//
+// Load core variables and mixins
+// --------------------------------------------------
+@import "bootstrap.less";
+@import "variables.less";
+@import "mixins.less";
+@import "font-open-sans.less";
+@import "theme-header.less";
+@import "theme-home.less";
+@import "theme-portfolio.less";
+@import "theme-catalogs.less";
+@import "theme-services.less";
+@import "theme-products.less";
+@import "owl.carousel.less";
+@import "animate.less";
+
+
+.social-widget {
+  .social-icon {
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    line-height: 30px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 300;
+    margin: 0 0 0 10px;
+    border-radius: 2px;
+    &:before {
+      color: #ffffff;
+    }
+    &.vk {
+      background-color: #1aa2e2;
+      &:before {
+        content: 'В';
+
+      }
+    }
+    &.fb {
+      background-color: #789fc3;
+      &:before {
+        content: 'f';
+      }
+    }
+
+  }
+}
+
+.the-post-thumbnail {
+  width: 100%;
+  margin: 0 0 55px;
+  @media (min-width: @screen-md-min) {
+    float: left;
+    width: 50%;
+    margin-right: 55px;
+  }
+  img {
+    width: 100%;
+    height: auto!important;
+  }
+}
+.reviews-title {
+  margin-top: @line-height-computed*4;
+  margin-bottom: @line-height-computed*2;
+
+}
+.kck-reviews {
+
+  .content {
+    background-color: #ffcd0a;
+    padding: 28px 28px 30px;
+    color: #000000;
+    font-weight: 400;
+    position: relative;
+    &:after {
+      position: absolute;
+      content: '';
+      display: block;
+      bottom: -10px;
+      left: 54px;
+      border: 10px solid transparent;
+      border-top-color: #ffcd0a;
+      border-bottom-width: 0;
+      width: 0;
+      height: 0;
+      margin: 0 -10px;
+    }
+  }
+  .reviews-meta {
+    display: table;
+    margin: 30px 0 50px;
+    .logo {
+      background-color: #aaaaaa;
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      //line-height: 108px;
+      display: table-cell;
+      vertical-align: middle;
+      img {
+        vertical-align: middle;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+    .reporter {
+      display: table-cell;
+      vertical-align: middle;
+      padding: 0 0 0 24px;
+      .name {
+        display: block;
+        font-size: 20px;
+      }
+      .position {
+        font-size: 13px;
+      }
+    }
+
+  }
+
+}
+
+.contact-shortcode {
+  .office-line {
+    &.row {
+      margin: 0 0 @grid-gutter-width;
+      > * {
+        padding: 0;
+      }
+    }
+
+
+  }
+  .info-block {
+    background: url("../img/header-bg.jpg") center top no-repeat;
+    display: table;
+    color: #ffffff;
+    font-size: 1.2em;
+    @media (max-width: @screen-sm-max) and (min-width: @screen-sm-min) {
+      font-size: 1em;
+    }
+    .info-cell {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      background: fade(#000000, 20%);
+      padding: 0 35px;
+
+
+    }
+    .info-inline-block {
+      display: inline-block;
+      text-align: left;
+      width: 350px;
+    }
+    .title {
+      &:extend(h3);
+      color: @brand-primary;
+      font-weight: 100;
+      &:after {
+        &:extend(h3:after);
+      }
+    }
+    .phone {
+      float: left;
+      width: 50%;
+    }
+    .address {
+      clear: both;
+    }
+    .email{
+      clear: both;
+    }
+    .glyphicon {
+      color: @brand-primary;
+    }
+    .contact-item {
+      margin: 0 0 15px;
+    }
+  }
+}
