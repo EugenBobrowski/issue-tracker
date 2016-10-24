@@ -14,8 +14,6 @@ class Issue_Tracker_Shortcode_Dashboard
     public function shortcode($attr)
     {
 
-        wp_enqueue_style('issues-front', plugin_dir_url(__FILE__) . 'assets/issues-front.css');
-
         $issuers_query = new WP_Query(array('post_type' => 'issues'));
 
         ob_start();

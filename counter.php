@@ -21,6 +21,12 @@ class Counter
         wp_localize_script('time-tacking-js', 'time_tracking', array(
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('tracktime')));
+
+
+
+        wp_enqueue_style('font-awesome', plugin_dir_url(__FILE__) . 'assets/css/font-awesome.min.css');
+        wp_enqueue_style('issues-front', plugin_dir_url(__FILE__) . 'assets/issues-front.css');
+
     }
 
     public function ajax_callback () {
@@ -82,6 +88,12 @@ class Counter
     {
         global $wpdb;
         $current_user = wp_get_current_user();
+        $times = $wpdb->prepare("
+SELECT comments.`comment_ID`, comments.`comment_content`, meta.`meta_value` 
+FROM {$wpdb->comments} AS comments JOIN {$wpdb->commentmeta} AS meta ON comments.`comment_ID` = meta.`comment_ID`
+WHERE meta.`meta_key` = 'time' AND comments.`comment_type` = 'time' AND comments.`user_id` = %d 
+ORDER BY comments.`comment_date` DESC", $current_user->ID);
+        $times = $wpdb->get_results($times);
         ?>
         <div class="time-tacking-modal">
             <div class="overlay"></div>
@@ -99,50 +111,42 @@ class Counter
                                 data-stop="<?php _e('Stop'); ?>"><?php _e('Start'); ?></button>
                     </span>
                 </div><!-- /input-group -->
+                <div class="time-entries-table-container">
+                    <table class="time-entries-table">
+                        <thead>
+                        <th class="time-item-id"     >ID</th>
+                        <th class="time-item-message">Message</th>
+                        <th class="time-entry-time"   >Time</th>
+                        </thead>
+                        <tbody>
+                        <?php
 
-                <table class="time-entries-table">
-                    <thead>
-                    <th class="time-item-id"     >ID</th>
-                    <th class="time-item-message">Message</th>
-                    <th class="time-item-time"   >Time</th>
-                    </thead>
-                    <tbody>
-                    <?php
-
-                    $times = $wpdb->prepare("
-SELECT comments.`comment_ID`, comments.`comment_content`, meta.`meta_value` 
-FROM {$wpdb->comments} AS comments JOIN {$wpdb->commentmeta} AS meta ON comments.`comment_ID` = meta.`comment_ID`
-WHERE meta.`meta_key` = 'time' AND comments.`comment_type` = 'time' AND comments.`user_id` = %d 
-ORDER BY comments.`comment_date` DESC", $current_user->ID);
-                    $times = $wpdb->get_results($times);
-
-//                    var_dump($times);
-
-//                    $times = get_comments([
-//                        'author__in' => $current_user->ID,
-//                        'type' => 'time']);
-
-
-                    foreach ($times as $comment) {
+                        foreach ($times as $comment) {
+                            ?>
+                            <tr>
+                                <td class="time-item-id"     ><?php echo $comment->comment_ID; ?></td>
+                                <td class="time-item-message"><?php echo $comment->comment_content; ?>
+                                    <a href="<?php echo add_query_arg(['action' => 'delete_time', 'id' => $comment->comment_ID]); ?>" class="delete-time-entry fa fa-trash"></a>
+                                    <a href="<?php echo add_query_arg(['action' => 'continue_time', 'id' => $comment->comment_ID]); ?>" class="continue-time-entry fa fa-play"></a>
+                                    <a href="<?php echo add_query_arg(['action' => 'continue_time', 'id' => $comment->comment_ID]); ?>" class="edit-time-entry-desc fa fa-pencil"></a>
+                                </td>
+                                <td class="time-entry-time"   ><?php echo time_to_string(get_comment_meta($comment->comment_ID, 'time', true)); ?></td>
+                            </tr>
+                            <?php
+                        }
                         ?>
                         <tr>
-                            <td class="time-item-id"     ><?php echo $comment->comment_ID; ?></td>
-                            <td class="time-item-message"><?php echo $comment->comment_content; ?> <a href="<?php echo add_query_arg(['action' => 'delete_time', 'id' => $comment->comment_ID]); ?>" class="delete-time-entry">Remove</a></td>
-                            <td class="time-item-time"   ><?php echo time_to_string(get_comment_meta($comment->comment_ID, 'time', true)); ?></td>
+                            <td class="no-time-items" colspan="3" style="<?php if (!empty($times)) echo 'display: none; '?>">No time tracked today</td>
                         </tr>
-                        <?php
-                    }
-                    ?>
-                    <tr>
-                        <td class="no-time-items" colspan="3" style="<?php if (!empty($times)) echo 'display: none; '?>">No time tracked today</td>
-                    </tr>
-                    </tbody>
-                    <tfoot>
-                    <td class="time-item-id"      >ID</td>
-                    <th class="time-item-message" >Message</th>
-                    <th class="time-item-time"    >Time</th>
-                    </tfoot>
-                </table>
+                        </tbody>
+                        <tfoot>
+                        <td class="time-item-id"      >ID</td>
+                        <th class="time-item-message" >Message</th>
+                        <th class="time-entry-time"    >Time</th>
+                        </tfoot>
+                    </table>
+                </div>
+
 
             </div>
         </div>

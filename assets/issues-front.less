@@ -204,6 +204,11 @@
   tr:nth-child(2n) td {
     background: fade(#000000, 2%);
   }
+  .time-entries-table-container {
+    max-height:300px;
+    overflow-y: auto;
+  }
+
   .time-entries-table {
 
   }
@@ -214,15 +219,44 @@
   }
   .time-item-message{
     width: auto;
+    position: relative;
+    .delete-time-entry, .continue-time-entry, .edit-time-entry-desc, .edit-time-entry-time {
+      display: none;
+      margin: 0 5px;
+      position: absolute;
+      top: 0;
+      font-size: 1.3em;
+      line-height: 28px;
+      border-radius: 50%;
+      background: fade(#ffffff, 50%);
+    }
     .delete-time-entry {
       color: tomato;
-      display: none;
+      right: 0;
     }
-    &:hover .delete-time-entry {
-      display: inline-block;
+    .continue-time-entry {
+      color: #41a62a;
+      right: 20px;
+    }
+    .edit-time-entry-desc {
+      color: #ff3a55;
+      left: 10px;
+    }
+    .edit-time-entry-time {
+      color: #0399a6;
+      left: 200px;
+    }
+    &:hover {
+      .delete-time-entry, .continue-time-entry, .edit-time-entry-desc, .edit-time-entry-time {
+        display: inline-block;
+        opacity: 0.9;
+        &:hover {
+          opacity: 1;
+        }
+      }
     }
   }
-  .time-item-time {
+  .time-entry-time {
     width: 7em;
     text-align: center;
   }
@@ -231,13 +265,6 @@
     color: #aaaaaa;
     font-style: italic;
   }
-
-  .delete-time-entry {
-    color: tomato;
-    display: none;
-
-  }
-
 
 }
 

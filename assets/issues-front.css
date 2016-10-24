@@ -249,21 +249,61 @@
 .time-tacking-modal tr:nth-child(2n) td {
   background: rgba(0, 0, 0, 0.02);
 }
+.time-tacking-modal .time-entries-table-container {
+  max-height: 300px;
+  overflow-y: auto;
+}
 .time-tacking-modal .time-item-id {
   width: 4em;
   text-align: center;
 }
 .time-tacking-modal .time-item-message {
   width: auto;
+  position: relative;
+}
+.time-tacking-modal .time-item-message .delete-time-entry,
+.time-tacking-modal .time-item-message .continue-time-entry,
+.time-tacking-modal .time-item-message .edit-time-entry-desc,
+.time-tacking-modal .time-item-message .edit-time-entry-time {
+  display: none;
+  margin: 0 5px;
+  position: absolute;
+  top: 0;
+  font-size: 1.3em;
+  line-height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
 }
 .time-tacking-modal .time-item-message .delete-time-entry {
   color: tomato;
-  display: none;
+  right: 0;
 }
-.time-tacking-modal .time-item-message:hover .delete-time-entry {
+.time-tacking-modal .time-item-message .continue-time-entry {
+  color: #41a62a;
+  right: 20px;
+}
+.time-tacking-modal .time-item-message .edit-time-entry-desc {
+  color: #ff3a55;
+  left: 10px;
+}
+.time-tacking-modal .time-item-message .edit-time-entry-time {
+  color: #0399a6;
+  left: 200px;
+}
+.time-tacking-modal .time-item-message:hover .delete-time-entry,
+.time-tacking-modal .time-item-message:hover .continue-time-entry,
+.time-tacking-modal .time-item-message:hover .edit-time-entry-desc,
+.time-tacking-modal .time-item-message:hover .edit-time-entry-time {
   display: inline-block;
+  opacity: 0.9;
 }
-.time-tacking-modal .time-item-time {
+.time-tacking-modal .time-item-message:hover .delete-time-entry:hover,
+.time-tacking-modal .time-item-message:hover .continue-time-entry:hover,
+.time-tacking-modal .time-item-message:hover .edit-time-entry-desc:hover,
+.time-tacking-modal .time-item-message:hover .edit-time-entry-time:hover {
+  opacity: 1;
+}
+.time-tacking-modal .time-entry-time {
   width: 7em;
   text-align: center;
 }
@@ -271,8 +311,4 @@
   background: rgba(0, 0, 0, 0.02);
   color: #aaaaaa;
   font-style: italic;
-}
-.time-tacking-modal .delete-time-entry {
-  color: tomato;
-  display: none;
 }

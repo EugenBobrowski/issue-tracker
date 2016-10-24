@@ -23,6 +23,7 @@
         box.$this.on('click', '.minimize', box.minimize);
         box.$this.on('click', '.start-stop', box.count);
         box.$this.on('click', '.delete-time-entry', box.delete_time);
+        box.$this.on('click', '.time-entry-time', box.delete_time);
 
     };
 
@@ -102,8 +103,9 @@
     box.isert_new_time = function (comment_ID) {
         $('<tr>' +
             '<td class="time-item-id">' + comment_ID + '</td>' +
-            '<td class="time-item-message">' + box.$this.find('.description-field').val() + '</td>' +
-            '<td class="time-item-time">' + box.$this.find('.time-field').val() + '</td>' +
+            '<td class="time-item-message">' + box.$this.find('.description-field').val() +
+            ' <a href="#" class="delete-time-entry">Remove</a>' + '</td>' +
+            '<td class="time-entry-time">' + box.$this.find('.time-field').val() + '</td>' +
             '</tr>').prependTo(box.$this.find('.time-entries-table').find('tbody'));
 
         box.$this.find('.description-field').val('');
