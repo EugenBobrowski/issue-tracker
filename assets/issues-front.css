@@ -256,6 +256,13 @@
 .time-tacking-modal .time-item-message {
   width: auto;
 }
+.time-tacking-modal .time-item-message .delete-time-entry {
+  color: tomato;
+  display: none;
+}
+.time-tacking-modal .time-item-message:hover .delete-time-entry {
+  display: inline-block;
+}
 .time-tacking-modal .time-item-time {
   width: 7em;
   text-align: center;
@@ -264,4 +271,8 @@
   background: rgba(0, 0, 0, 0.02);
   color: #aaaaaa;
   font-style: italic;
+}
+.time-tacking-modal .delete-time-entry {
+  color: tomato;
+  display: none;
 }

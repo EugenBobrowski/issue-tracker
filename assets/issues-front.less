@@ -214,6 +214,13 @@
   }
   .time-item-message{
     width: auto;
+    .delete-time-entry {
+      color: tomato;
+      display: none;
+    }
+    &:hover .delete-time-entry {
+      display: inline-block;
+    }
   }
   .time-item-time {
     width: 7em;
@@ -223,6 +230,12 @@
     background: fade(#000000, 2%);
     color: #aaaaaa;
     font-style: italic;
+  }
+
+  .delete-time-entry {
+    color: tomato;
+    display: none;
+
   }
 
 

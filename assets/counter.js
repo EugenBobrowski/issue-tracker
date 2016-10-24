@@ -22,6 +22,7 @@
         box.$this = $('.time-tacking-modal');
         box.$this.on('click', '.minimize', box.minimize);
         box.$this.on('click', '.start-stop', box.count);
+        box.$this.on('click', '.delete-time-entry', box.delete_time);
 
     };
 
@@ -107,6 +108,27 @@
 
         box.$this.find('.description-field').val('');
         box.$this.find('.time-field').val('');
+    };
+
+    box.delete_time = function (e) {
+        e.preventDefault();
+
+        var $this = $(this);
+
+        var x = $.post(time_tracking.ajax_url, {
+            action: 'delete_time',
+            _wpnonce: time_tracking.nonce,
+            entry_ID: $this.parents('tr').find('.time-item-id').text()
+        }, function (response) {
+            $this.parents('tr').remove();
+            var comment_ID = parseInt(response);
+            if (!comment_ID) {
+                alert(response);
+                return;
+            }
+            return 'sdfgf';
+        });
+
     };
 
 

@@ -9,7 +9,7 @@ class Counter
         add_action('wp_enqueue_scripts', [$this, 'assets']);
         add_action('wp_footer', [$this, 'modal']);
         add_action('wp_ajax_track_time', array($this, 'ajax_callback'));
-        add_action('wp_ajax_nopriv_track_time', array($this, 'ajax_callback'));
+        add_action('wp_ajax_delete_time', array($this, 'delete_time'));
     }
 
     public function assets()
@@ -53,6 +53,27 @@ class Counter
 
         echo $comment_id;
 
+        exit();
+
+    }
+
+    public function delete_time () {
+
+        check_admin_referer('tracktime');
+
+        $entry_ID = absint($_POST['entry_ID']);
+        $current_user = wp_get_current_user();
+
+        if (!$current_user->exists())
+            wp_send_json('logged out');
+
+        if (empty($entry_ID))
+            wp_send_json('No entry');
+
+        wp_delete_comment($entry_ID, true);
+        delete_comment_meta($entry_ID, 'time');
+
+        echo 1;
         exit();
 
     }
@@ -106,7 +127,7 @@ ORDER BY comments.`comment_date` DESC", $current_user->ID);
                         ?>
                         <tr>
                             <td class="time-item-id"     ><?php echo $comment->comment_ID; ?></td>
-                            <td class="time-item-message"><?php echo $comment->comment_content; ?></td>
+                            <td class="time-item-message"><?php echo $comment->comment_content; ?> <a href="<?php echo add_query_arg(['action' => 'delete_time', 'id' => $comment->comment_ID]); ?>" class="delete-time-entry">Remove</a></td>
                             <td class="time-item-time"   ><?php echo time_to_string(get_comment_meta($comment->comment_ID, 'time', true)); ?></td>
                         </tr>
                         <?php
