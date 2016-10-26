@@ -95,7 +95,7 @@ WHERE meta.`meta_key` = 'time' AND comments.`comment_type` = 'time' AND comments
 ORDER BY comments.`comment_date` DESC", $current_user->ID);
         $times = $wpdb->get_results($times);
         ?>
-        <div class="time-tacking-modal">
+        <div class="time-tacking-modal <?php if ($_COOKIE['time_modal_minimized']) echo 'minimized'; ?>">
             <div class="overlay"></div>
             <div class="modal-body">
                 <div class="handle"></div>

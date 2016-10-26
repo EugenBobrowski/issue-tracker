@@ -24,7 +24,10 @@
         box.$this.on('click', '.start-stop', box.count);
         box.$this.on('click', '.delete-time-entry', box.delete_time);
         box.$this.on('click', '.time-entry-time', box.delete_time);
-
+        box.$this.filter('.minimized')
+            .draggable({handle: ".handle"})
+            .css('transition', 'none');
+        console.log( document.cookie );
     };
 
     box.minimize = function (e) {
@@ -36,6 +39,8 @@
             box.$this
                 .attr('style', '');
             box.$this.removeClass('minimized');
+            setCookie('time_modal_minimized', 0, {expires: 3600});
+
         } else {
 
             box.$this.addClass('minimized');
@@ -44,6 +49,8 @@
                     .draggable({handle: ".handle"})
                     .css('transition', 'none');
             }, 1000);
+
+            setCookie('time_modal_minimized', 1, {expires: 3600})
 
         }
 
@@ -202,6 +209,36 @@
 
         return string;
 
+    }
+
+    function setCookie(name, value, options) {
+        options = options || {};
+        console.log(document.cookie);
+        var expires = options.expires;
+
+        if (typeof expires == "number" && expires) {
+            var d = new Date();
+            d.setTime(d.getTime() + expires * 1000);
+            expires = options.expires = d;
+        }
+        if (expires && expires.toUTCString) {
+            options.expires = expires.toUTCString();
+        }
+
+        value = encodeURIComponent(value);
+
+        var updatedCookie = name + "=" + value;
+
+        for (var propName in options) {
+            updatedCookie += "; " + propName;
+            var propValue = options[propName];
+            if (propValue !== true) {
+                updatedCookie += "=" + propValue;
+            }
+        }
+
+        document.cookie = updatedCookie;
+        console.log(document.cookie);
     }
 
 
