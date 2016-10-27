@@ -38,7 +38,6 @@
 
     box.minimize = function (e) {
         e.preventDefault();
-        console.log(box.$this.hasClass('minimize'));
         if (box.$this.hasClass('minimized')) {
             box.$this.draggable("destroy");
 
@@ -226,7 +225,6 @@
 
     function setCookie(name, value, options) {
         options = options || {};
-        console.log(document.cookie);
         var expires = options.expires;
 
         if (typeof expires == "number" && expires) {
@@ -251,7 +249,6 @@
         }
 
         document.cookie = updatedCookie;
-        console.log(document.cookie);
     }
 
     function getCookie(name) {
