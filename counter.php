@@ -102,7 +102,7 @@ ORDER BY comments.`comment_date` DESC", $current_user->ID);
                 <a href="#" class="minimize"></a>
                 <div class="input-group">
                     <div class="input-group-addon">
-                        <input type="text" class="form-control time-field" name="time-field" placeholder="2.5h" style="width: 120px;">
+                        <input type="text" class="form-control time-field" name="time-field" placeholder="2.5h" style="width: 120px;" data-start="<?php echo (!empty($_COOKIE['time_started'])) ? $_COOKIE['time_started'] : ''; ?>">
                     </div>
                     <input type="text" class="form-control description-field" name="description-field" placeholder="<?php _e('What are you working on?'); ?>">
 

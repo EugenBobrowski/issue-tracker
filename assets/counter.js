@@ -12,14 +12,15 @@
     $(document).ready(function () {
         box.ready();
         console.log(time_tracking);
-
-
     });
 
     var box = {};
 
     box.ready = function () {
         box.$this = $('.time-tacking-modal');
+        box.$button = box.$this.find('.start-stop');
+        box.$time = box.$this.find('.time-field');
+
         box.$this.on('click', '.minimize', box.minimize);
         box.$this.on('click', '.start-stop', box.count);
         box.$this.on('click', '.delete-time-entry', box.delete_time);
@@ -27,7 +28,12 @@
         box.$this.filter('.minimized')
             .draggable({handle: ".handle"})
             .css('transition', 'none');
-        console.log( document.cookie );
+
+        box.time_started = getCookie('time_started');
+        if (box.time_started != undefined) {
+            box.tick_tack();
+            box.$button.addClass('active');
+        }
     };
 
     box.minimize = function (e) {
@@ -42,7 +48,6 @@
             setCookie('time_modal_minimized', 0, {expires: 3600});
 
         } else {
-
             box.$this.addClass('minimized');
             setTimeout(function () {
                 box.$this
@@ -59,7 +64,6 @@
     box.count = function (e) {
         e.preventDefault();
         var $this = $(this);
-        var $field = box.$this.find('.time-field');
 
         if ($this.hasClass('active')) {
             clearInterval(box.countInterval);
@@ -68,28 +72,33 @@
 
             box.register_time();
 
+
         } else {
+
             $this.text($this.data('stop'));
 
-            if ($field.val() == '') {
-                $field.data('start', Date.now() / 1000);
-            }
-            else {
-                $field.data('start', Date.now() / 1000 - working_in_sec($field.val()));
-            }
+            if (box.$time.val() == '') box.time_started = Date.now() / 1000;
+            else box.time_started = Date.now() / 1000 - working_in_sec(box.$time.val());
+
+            setCookie('time_started', box.time_started);
+
             //
-            box.countInterval = setInterval(function () {
-                $field.val(working_to_string(Date.now() / 1000 - $field.data('start')));
-            }, 1000);
+            box.tick_tack();
             $this.addClass('active');
         }
 
     };
 
+    box.tick_tack = function () {
+        box.countInterval = setInterval(function () {
+            box.$time.val(working_to_string(Date.now() / 1000 - box.time_started));
+        }, 1000);
+    };
+
     box.register_time = function () {
 
 
-        var x = $.post(time_tracking.ajax_url, {
+        $.post(time_tracking.ajax_url, {
             action: 'track_time',
             _wpnonce: time_tracking.nonce,
             time: working_in_sec(box.$this.find('.time-field').val()),
@@ -101,9 +110,13 @@
                 alert(response);
                 return;
             }
+
             box.isert_new_time(comment_ID);
 
-            return 'sdfgf';
+            box.$time.data('start', '');
+            setCookie('time_started', '', {
+                expires: -1
+            })
         });
 
     };
@@ -124,7 +137,7 @@
 
         var $this = $(this);
 
-        var x = $.post(time_tracking.ajax_url, {
+        $.post(time_tracking.ajax_url, {
             action: 'delete_time',
             _wpnonce: time_tracking.nonce,
             entry_ID: $this.parents('tr').find('.time-item-id').text()
@@ -239,6 +252,13 @@
 
         document.cookie = updatedCookie;
         console.log(document.cookie);
+    }
+
+    function getCookie(name) {
+        var matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
     }
 
 
