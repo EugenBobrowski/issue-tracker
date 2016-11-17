@@ -112,6 +112,21 @@ class Issues_Structure
     public function issue_details()
     {
         new Atf_Metabox('issues_meta', 'Issue Details', 'issues', array(
+            'label' => array(
+                'title' => __('Labels'),
+                'type' => 'select',
+                'options' => array(
+                    '' => 'None',
+                    'bug' => 'Bug',
+                    'dublicate' => 'major',
+                    'enhancement' => 'enhancement',
+                    'help' => 'help wanted',
+                    'invalid' => 'invalid',
+                    'question' => 'question',
+                    'wontfix' => 'wontfix',
+                ),
+                'default' => 'major'
+            ),
             'priority' => array(
                 'title' => __('Priority'),
                 'type' => 'select',
